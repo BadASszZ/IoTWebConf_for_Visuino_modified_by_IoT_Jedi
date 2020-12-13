@@ -158,11 +158,6 @@ public:
       const char* id, char* valueBuffer, int length, const char* customHtml,
       const char* type = "text");
 
-  /**
-   * For internal use only.
-   */
-  IotWebConfParameter();
-
   const char* label;
   char* valueBuffer;
   const char* type;
@@ -539,6 +534,7 @@ private:
   boolean _forceDefaultPassword = false;
   boolean _skipApStartup = false;
   boolean _forceApMode = false;
+  const char *_defaultThingName;
   IotWebConfParameter* _firstParameter = NULL;
   IotWebConfParameter _thingNameParameter =
     IotWebConfParameter("Thing name", "iwcThingName", this->_thingName, IOTWEBCONF_WORD_LEN);

@@ -23,9 +23,6 @@
 
 #define IOTWEBCONF_STATUS_ENABLED ((this->_statusPin >= 0) && this->_blinkEnabled)
 
-IotWebConfParameter::IotWebConfParameter()
-{
-}
 IotWebConfParameter::IotWebConfParameter(
     const char* label, const char* id, char* valueBuffer, int length,
     const char* type, const char* placeholder, const char* defaultValue,
@@ -72,12 +69,11 @@ IotWebConf::IotWebConf(
     const char* defaultThingName, DNSServer* dnsServer, WebServer* server,
     const char* initialApPassword, const char* configVersion)
 {
-  strncpy(this->_thingName, defaultThingName, IOTWEBCONF_WORD_LEN);
+  this->_defaultThingName = defaultThingName;
   this->_dnsServer = dnsServer;
   this->_server = server;
   this->_initialApPassword = initialApPassword;
   this->_configVersion = configVersion;
-  itoa(this->_apTimeoutMs / 1000, this->_apTimeoutStr, 10);
 
   this->_thingNameParameter.defaultValue = defaultThingName;
 
@@ -113,6 +109,9 @@ void IotWebConf::setupUpdateServer(
 
 boolean IotWebConf::init()
 {
+  strncpy(this->_thingName, this->_defaultThingName, IOTWEBCONF_WORD_LEN);
+  itoa(this->_apTimeoutMs / 1000, this->_apTimeoutStr, 10);
+
   // -- Setup pins.
   if (this->_configPin >= 0)
   {
