@@ -1,9 +1,11 @@
 /**
- * IotWebConf02StatusAndReset.ino -- IotWebConf is an ESP8266/ESP32
+ * IoTJediWebConfSettings.h -- IoTJediWebConf is an ESP8266/ESP32
  *   non blocking WiFi/AP web configuration library for Arduino.
- *   https://github.com/prampec/IotWebConf 
- *
- * Copyright (C) 2018 Balazs Kelemen <prampec+arduino@gmail.com>
+ *   https://github.com/BadASszZ/IoTWebConf_for_Visuino_modified_by_IoT_Jedi
+ * --- Based on https://github.com/prampec/IotWebConf ---
+ * Copyright (C) 2020 Balazs Kelemen <prampec+arduino@gmail.com>
+ * 
+ * Changed by IoT_Jedi to work together with Visuino
  *
  * This software may be modified and distributed under the terms
  * of the MIT license.  See the LICENSE file for details.
@@ -28,7 +30,7 @@
  *     button should be attached to GND.
  */
 
-#include <IotWebConf.h>
+#include <IoTWebConf_for_Visuino_modified_by_IoT_Jedi.h>
 
 // -- Initial name of the Thing. Used e.g. as SSID of the own Access Point.
 const char thingName[] = "testThing";
@@ -66,8 +68,8 @@ void setup()
 
   // -- Set up required URL handlers on the web server.
   server.on("/", handleRoot);
-  server.on("/config", []{ iotWebConf.handleConfig(); });
-  server.onNotFound([](){ iotWebConf.handleNotFound(); });
+  server.on("/config", []{ IoTWebConf_for_Visuino_modified_by_IoT_Jedi.handleConfig(); });
+  server.onNotFound([](){ IoTWebConf_for_Visuino_modified_by_IoT_Jedi.handleNotFound(); });
 
   Serial.println("Ready.");
 }
@@ -84,7 +86,7 @@ void loop()
 void handleRoot()
 {
   // -- Let IotWebConf test and handle captive portal requests.
-  if (iotWebConf.handleCaptivePortal())
+  if (IoTWebConf_for_Visuino_modified_by_IoT_Jedi.handleCaptivePortal())
   {
     // -- Captive portal request were already served.
     return;
