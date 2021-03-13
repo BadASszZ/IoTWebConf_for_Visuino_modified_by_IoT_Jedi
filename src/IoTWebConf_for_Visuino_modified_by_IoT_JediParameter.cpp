@@ -11,7 +11,7 @@
  * of the MIT license.  See the LICENSE file for details.
  */
 
-#include <IotWebConfParameter.h>
+#include <IoTWebConf_for_Visuino_modified_by_IoT_JediParameter.h>
 
 namespace iotwebconf
 {

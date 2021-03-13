@@ -13,7 +13,7 @@
 
 #include <EEPROM.h>
 
-#include "IotWebConf.h"
+#include "IoTWebConf_for_Visuino_modified_by_IoT_Jedi.h"
 
 #ifdef IOTWEBCONF_CONFIG_USE_MDNS
 # ifdef ESP8266

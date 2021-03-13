@@ -15,9 +15,9 @@
 #define IotWebConf_h
 
 #include <Arduino.h>
-#include <IotWebConfParameter.h>
-#include <IotWebConfSettings.h>
-#include <IotWebConfWebServerWrapper.h>
+#include <IoTWebConf_for_Visuino_modified_by_IoT_JediParameter.h>
+#include <IoTWebConf_for_Visuino_modified_by_IoT_JediSettings.h>
+#include <IoTWebConf_for_Visuino_modified_by_IoT_JediWebServerWrapper.h>
 
 #ifdef ESP8266
 # include <ESP8266WiFi.h>

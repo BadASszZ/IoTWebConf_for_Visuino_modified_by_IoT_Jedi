@@ -16,8 +16,8 @@
 
 #include <Arduino.h>
 #include <functional>
-#include <IotWebConfSettings.h>
-#include <IotWebConfWebServerWrapper.h>
+#include <IoTWebConf_for_Visuino_modified_by_IoT_JediSettings.h>
+#include <IoTWebConf_for_Visuino_modified_by_IoT_JediWebServerWrapper.h>
 
 const char IOTWEBCONF_HTML_FORM_PARAM[] PROGMEM =
   "<div class='{s}'><label for='{i}'>{b}</label><input type='{t}' id='{i}' "
