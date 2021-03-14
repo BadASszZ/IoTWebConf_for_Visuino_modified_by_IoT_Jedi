@@ -1,0 +1,19 @@
+{
+	"name": "IoTWebConf_for_Visuino_modified_by_IoT_Jedi",
+	"description": "Create an ESP32 or ESP8266 OpenCanary Honeypot",
+	"keywords": "esp8266, ESP32, Visuino, WiFi, Config, IoTJedi, IoT_Jedi",
+	"authors":
+		{
+			"name": "Tobbe Westlin",
+			"email": "tobbewestlin@gmail.com",
+			"url": "https://www.youtube.com/user/tobbewestlin"
+		},
+	"repository":
+	{
+		"type": "git",
+		"url": "https://github.com/BadASszZ/IoTWebConf_for_Visuino_modified_by_IoT_Jedi"
+	},
+	"url": "https://www.patreon.com/IOT_Jedi/",
+	"frameworks": "Arduino",
+	"platforms": "*"
+}
