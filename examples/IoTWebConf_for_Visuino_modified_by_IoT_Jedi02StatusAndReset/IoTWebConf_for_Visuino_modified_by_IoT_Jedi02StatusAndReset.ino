@@ -53,7 +53,7 @@ void handleRoot();
 DNSServer dnsServer;
 WebServer server(80);
 
-IotWebConf iotWebConf(thingName, &dnsServer, &server, wifiInitialApPassword);
+IotWebConf IoTWebConf_for_Visuino_modified_by_IoT_Jedi(thingName, &dnsServer, &server, wifiInitialApPassword);
 
 void setup() 
 {
@@ -62,9 +62,9 @@ void setup()
   Serial.println("Starting up...");
 
   // -- Initializing the configuration.
-  iotWebConf.setStatusPin(STATUS_PIN);
-  iotWebConf.setConfigPin(CONFIG_PIN);
-  iotWebConf.init();
+  IoTWebConf_for_Visuino_modified_by_IoT_Jedi.setStatusPin(STATUS_PIN);
+  IoTWebConf_for_Visuino_modified_by_IoT_Jedi.setConfigPin(CONFIG_PIN);
+  IoTWebConf_for_Visuino_modified_by_IoT_Jedi.init();
 
   // -- Set up required URL handlers on the web server.
   server.on("/", handleRoot);
@@ -77,7 +77,7 @@ void setup()
 void loop() 
 {
   // -- doLoop should be called as frequently as possible.
-  iotWebConf.doLoop();
+  IoTWebConf_for_Visuino_modified_by_IoT_Jedi.doLoop();
 }
 
 /**

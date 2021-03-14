@@ -41,7 +41,7 @@
 #ifdef ESP8266
 # include <ESP8266HTTPUpdateServer.h>
 #elif defined(ESP32)
-# include <IotWebConfESP32HTTPUpdateServer.h>
+# include <IoTWebConf_for_Visuino_modified_by_IoT_JediESP32HTTPUpdateServer.h>
 #endif
 
 #ifdef ESP8266
@@ -90,7 +90,7 @@ ESP8266HTTPUpdateServer httpUpdater;
 HTTPUpdateServer httpUpdater;
 #endif
 
-IotWebConf iotWebConf(thingName.c_str(), &dnsServer, &server, wifiInitialApPassword, CONFIG_VERSION);
+IotWebConf IoTWebConf_for_Visuino_modified_by_IoT_Jedi(thingName.c_str(), &dnsServer, &server, wifiInitialApPassword, CONFIG_VERSION);
 
 bool needReset = false;
 int needAction = NO_ACTION;
@@ -105,15 +105,15 @@ void setup()
 
   pinMode(RELAY_PIN, OUTPUT);
 
-  iotWebConf.setStatusPin(STATUS_PIN);
-  iotWebConf.setConfigPin(BUTTON_PIN);
-  iotWebConf.setConfigSavedCallback(&configSaved);
-  iotWebConf.setupUpdateServer(
+  IoTWebConf_for_Visuino_modified_by_IoT_Jedi.setStatusPin(STATUS_PIN);
+  IoTWebConf_for_Visuino_modified_by_IoT_Jedi.setConfigPin(BUTTON_PIN);
+  IoTWebConf_for_Visuino_modified_by_IoT_Jedi.setConfigSavedCallback(&configSaved);
+  IoTWebConf_for_Visuino_modified_by_IoT_Jedi.setupUpdateServer(
     [](const char* updatePath) { httpUpdater.setup(&server, updatePath); },
     [](const char* userName, char* password) { httpUpdater.updateCredentials(userName, password); });
 
   // -- Initializing the configuration.
-  iotWebConf.init();
+  IoTWebConf_for_Visuino_modified_by_IoT_Jedi.init();
 
   // -- Set up required URL handlers on the web server.
   server.on("/", handleRoot);
@@ -126,12 +126,12 @@ void setup()
 void loop() 
 {
   // -- doLoop should be called as frequently as possible.
-  iotWebConf.doLoop();
+  IoTWebConf_for_Visuino_modified_by_IoT_Jedi.doLoop();
 
   if (needReset)
   {
     Serial.println("Rebooting after 1 second.");
-    iotWebConf.delay(1000);
+    IoTWebConf_for_Visuino_modified_by_IoT_Jedi.delay(1000);
     ESP.restart();
   }
 
@@ -156,11 +156,11 @@ void applyAction(unsigned long now)
     digitalWrite(RELAY_PIN, state);
     if (state == HIGH)
     {
-      iotWebConf.blink(5000, 95);
+      IoTWebConf_for_Visuino_modified_by_IoT_Jedi.blink(5000, 95);
     }
     else
     {
-      iotWebConf.stopCustomBlink();
+      IoTWebConf_for_Visuino_modified_by_IoT_Jedi.stopCustomBlink();
     }
     Serial.print("Switched ");
     Serial.println(state == HIGH ? "ON" : "OFF");
@@ -196,9 +196,9 @@ void handleRoot()
   }
   
   String s = F("<!DOCTYPE html><html lang=\"en\"><head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, user-scalable=no\"/>");
-  s += iotWebConf.getHtmlFormatProvider()->getStyle();
+  s += IoTWebConf_for_Visuino_modified_by_IoT_Jedi.getHtmlFormatProvider()->getStyle();
   s += "<title>IotWebConf 08 Web Relay</title></head><body>";
-  s += iotWebConf.getThingName();
+  s += IoTWebConf_for_Visuino_modified_by_IoT_Jedi.getThingName();
   s += "<div>State: ";
   s += (state == HIGH ? "ON" : "OFF");
   s += "</div>";

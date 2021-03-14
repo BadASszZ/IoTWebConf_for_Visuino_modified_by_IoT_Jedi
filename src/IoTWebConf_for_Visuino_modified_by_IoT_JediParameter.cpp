@@ -1,5 +1,5 @@
 /**
- * IoTJediWebConfSettings.h -- IoTJediWebConf is an ESP8266/ESP32
+ * IoTWebConf_for_Visuino_modified_by_IoT_JediSettings.h -- IoTJediWebConf is an ESP8266/ESP32
  *   non blocking WiFi/AP web configuration library for Arduino.
  *   https://github.com/BadASszZ/IoTWebConf_for_Visuino_modified_by_IoT_Jedi
  * --- Based on https://github.com/prampec/IotWebConf ---

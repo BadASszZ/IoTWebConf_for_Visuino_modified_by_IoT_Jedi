@@ -33,7 +33,7 @@
 # include <ESP8266HTTPUpdateServer.h>
 #elif defined(ESP32)
 // For ESP32 IotWebConf provides a drop-in replacement for UpdateServer.
-# include <IotWebConfESP32HTTPUpdateServer.h>
+# include <IoTWebConf_for_Visuino_modified_by_IoT_JediESP32HTTPUpdateServer.h>
 #endif
 // -- Initial name of the Thing. Used e.g. as SSID of the own Access Point.
 const char thingName[] = "testThing";
@@ -64,7 +64,7 @@ ESP8266HTTPUpdateServer httpUpdater;
 HTTPUpdateServer httpUpdater;
 #endif
 
-IotWebConf iotWebConf(thingName, &dnsServer, &server, wifiInitialApPassword, CONFIG_VERSION);
+IotWebConf IoTWebConf_for_Visuino_modified_by_IoT_Jedi(thingName, &dnsServer, &server, wifiInitialApPassword, CONFIG_VERSION);
 
 void setup() 
 {
@@ -72,15 +72,15 @@ void setup()
   Serial.println();
   Serial.println("Starting up...");
 
-  iotWebConf.setStatusPin(STATUS_PIN);
-  iotWebConf.setConfigPin(CONFIG_PIN);
+  IoTWebConf_for_Visuino_modified_by_IoT_Jedi.setStatusPin(STATUS_PIN);
+  IoTWebConf_for_Visuino_modified_by_IoT_Jedi.setConfigPin(CONFIG_PIN);
   // -- Define how to handle updateServer calls.
-  iotWebConf.setupUpdateServer(
+  IoTWebConf_for_Visuino_modified_by_IoT_Jedi.setupUpdateServer(
     [](const char* updatePath) { httpUpdater.setup(&server, updatePath); },
     [](const char* userName, char* password) { httpUpdater.updateCredentials(userName, password); });
 
   // -- Initializing the configuration.
-  iotWebConf.init();
+  IoTWebConf_for_Visuino_modified_by_IoT_Jedi.init();
 
   // -- Set up required URL handlers on the web server.
   server.on("/", handleRoot);
@@ -93,7 +93,7 @@ void setup()
 void loop() 
 {
   // -- doLoop should be called as frequently as possible.
-  iotWebConf.doLoop();
+  IoTWebConf_for_Visuino_modified_by_IoT_Jedi.doLoop();
 }
 
 /**
@@ -102,7 +102,7 @@ void loop()
 void handleRoot()
 {
   // -- Let IotWebConf test and handle captive portal requests.
-  if (IoTWebConf_for_Visuino_modified_by_IoT_Jedi.handleCaptivePortal())
+  if (ioTWebConf.handleCaptivePortal())
   {
     // -- Captive portal request were already served.
     return;

@@ -28,7 +28,7 @@
  */
 
 #include <IoTWebConf_for_Visuino_modified_by_IoT_Jedi.h>
-#include <IotWebConfUsing.h> // This loads aliases for easier class names.
+#include <IoTWebConf_for_Visuino_modified_by_IoT_JediUsing.h> // This loads aliases for easier class names.
 
 // -- Initial name of the Thing. Used e.g. as SSID of the own Access Point.
 const char thingName[] = "testThing";
@@ -66,7 +66,7 @@ char ipAddressValue[STRING_LEN];
 char gatewayValue[STRING_LEN];
 char netmaskValue[STRING_LEN];
 
-IotWebConf iotWebConf(thingName, &dnsServer, &server, wifiInitialApPassword, CONFIG_VERSION);
+IotWebConf IoTWebConf_for_Visuino_modified_by_IoT_Jedi(thingName, &dnsServer, &server, wifiInitialApPassword, CONFIG_VERSION);
 // -- You can also use namespace formats e.g.: iotwebconf::ParameterGroup
 IotWebConfParameterGroup connGroup = IotWebConfParameterGroup("Connection parameters");
 IotWebConfTextParameter ipAddressParam = IotWebConfTextParameter("IP address", "ipAddress", ipAddressValue, STRING_LEN, "text", NULL, "192.168.3.222");
@@ -87,16 +87,16 @@ void setup()
   connGroup.addItem(&gatewayParam);
   connGroup.addItem(&netmaskParam);
 
-  iotWebConf.setStatusPin(STATUS_PIN);
-  iotWebConf.setConfigPin(CONFIG_PIN);
-  iotWebConf.addParameterGroup(&connGroup);
-  iotWebConf.setConfigSavedCallback(&configSaved);
-  iotWebConf.setFormValidator(&formValidator);
-  iotWebConf.setApConnectionHandler(&connectAp);
-  iotWebConf.setWifiConnectionHandler(&connectWifi);
+  IoTWebConf_for_Visuino_modified_by_IoT_Jedi.setStatusPin(STATUS_PIN);
+  IoTWebConf_for_Visuino_modified_by_IoT_Jedi.setConfigPin(CONFIG_PIN);
+  IoTWebConf_for_Visuino_modified_by_IoT_Jedi.addParameterGroup(&connGroup);
+  IoTWebConf_for_Visuino_modified_by_IoT_Jedi.setConfigSavedCallback(&configSaved);
+  IoTWebConf_for_Visuino_modified_by_IoT_Jedi.setFormValidator(&formValidator);
+  IoTWebConf_for_Visuino_modified_by_IoT_Jedi.setApConnectionHandler(&connectAp);
+  IoTWebConf_for_Visuino_modified_by_IoT_Jedi.setWifiConnectionHandler(&connectWifi);
 
   // -- Initializing the configuration.
-  iotWebConf.init();
+  IoTWebConf_for_Visuino_modified_by_IoT_Jedi.init();
 
   // -- Set up required URL handlers on the web server.
   server.on("/", handleRoot);
@@ -109,7 +109,7 @@ void setup()
 void loop() 
 {
   // -- doLoop should be called as frequently as possible.
-  iotWebConf.doLoop();
+  IoTWebConf_for_Visuino_modified_by_IoT_Jedi.doLoop();
 }
 
 /**

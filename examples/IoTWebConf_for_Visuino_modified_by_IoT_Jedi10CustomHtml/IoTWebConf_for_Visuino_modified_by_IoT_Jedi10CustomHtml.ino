@@ -38,7 +38,7 @@ void handleRoot();
 DNSServer dnsServer;
 WebServer server(80);
 
-IotWebConf iotWebConf(thingName, &dnsServer, &server, wifiInitialApPassword);
+IotWebConf IoTWebConf_for_Visuino_modified_by_IoT_Jedi(thingName, &dnsServer, &server, wifiInitialApPassword);
 
 // -- Javascript block will be added to the header.
 const char CUSTOMHTML_SCRIPT_INNER[] PROGMEM = "\n\
@@ -82,8 +82,8 @@ void setup()
   Serial.println("Starting up...");
 
   // -- Applying the new HTML format to IotWebConf.
-  iotWebConf.setHtmlFormatProvider(&customHtmlFormatProvider);
-  iotWebConf.init();
+  IoTWebConf_for_Visuino_modified_by_IoT_Jedi.setHtmlFormatProvider(&customHtmlFormatProvider);
+  IoTWebConf_for_Visuino_modified_by_IoT_Jedi.init();
 
   // -- Set up required URL handlers on the web server.
   server.on("/", handleRoot);
@@ -96,7 +96,7 @@ void setup()
 void loop() 
 {
   // -- doLoop should be called as frequently as possible.
-  iotWebConf.doLoop();
+  IoTWebConf_for_Visuino_modified_by_IoT_Jedi.doLoop();
 }
 
 /**

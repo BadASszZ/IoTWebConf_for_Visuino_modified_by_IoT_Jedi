@@ -24,15 +24,15 @@ install:
       arduino --install-boards esp32:esp32;
     fi
 script:
-   - arduino --verify --board $BOARD examples/IotWebConf01Minimal/IotWebConf01Minimal.ino
-   - arduino --verify --board $BOARD examples/IotWebConf02StatusAndReset/IotWebConf02StatusAndReset.ino
-   - arduino --verify --board $BOARD examples/IotWebConf03CustomParameters/IotWebConf03CustomParameters.ino
-   - arduino --verify --board $BOARD examples/IotWebConf04UpdateServer/IotWebConf04UpdateServer.ino
-   - arduino --verify --board $BOARD examples/IotWebConf05Callbacks/IotWebConf05Callbacks.ino
-   - arduino --verify --board $BOARD examples/IotWebConf06MqttApp/IotWebConf06MqttApp.ino
-   - arduino --verify --board $BOARD examples/IotWebConf07MqttRelay/IotWebConf07MqttRelay.ino
-   - arduino --verify --board $BOARD examples/IotWebConf08WebRelay/IotWebConf08WebRelay.ino
-   - arduino --verify --board $BOARD examples/IotWebConf09CustomConnection/IotWebConf09CustomConnection.ino
+   - arduino --verify --board $BOARD examples/IoTWebConf_for_Visuino_modified_by_IoT_Jedi01Minimal/IoTWebConf_for_Visuino_modified_by_IoT_Jedi01Minimal.ino
+   - arduino --verify --board $BOARD examples/IoTWebConf_for_Visuino_modified_by_IoT_Jedi02StatusAndReset/IoTWebConf_for_Visuino_modified_by_IoT_Jedi02StatusAndReset.ino
+   - arduino --verify --board $BOARD examples/IoTWebConf_for_Visuino_modified_by_IoT_Jedi03CustomParameters/IoTWebConf_for_Visuino_modified_by_IoT_Jedi03CustomParameters.ino
+   - arduino --verify --board $BOARD examples/IoTWebConf_for_Visuino_modified_by_IoT_Jedi04UpdateServer/IoTWebConf_for_Visuino_modified_by_IoT_Jedi04UpdateServer.ino
+   - arduino --verify --board $BOARD examples/IoTWebConf_for_Visuino_modified_by_IoT_Jedi05Callbacks/IoTWebConf_for_Visuino_modified_by_IoT_Jedi05Callbacks.ino
+   - arduino --verify --board $BOARD examples/IoTWebConf_for_Visuino_modified_by_IoT_Jedi06MqttApp/IoTWebConf_for_Visuino_modified_by_IoT_Jedi06MqttApp.ino
+   - arduino --verify --board $BOARD examples/IoTWebConf_for_Visuino_modified_by_IoT_Jedi07MqttRelay/IoTWebConf_for_Visuino_modified_by_IoT_Jedi07MqttRelay.ino
+   - arduino --verify --board $BOARD examples/IoTWebConf_for_Visuino_modified_by_IoT_Jedi08WebRelay/IoTWebConf_for_Visuino_modified_by_IoT_Jedi08WebRelay.ino
+   - arduino --verify --board $BOARD examples/IoTWebConf_for_Visuino_modified_by_IoT_Jedi09CustomConnection/IoTWebConf_for_Visuino_modified_by_IoT_Jedi09CustomConnection.ino
 after_success:
   - bash <(curl -s https://codecov.io/bash)
 notifications:

@@ -2,7 +2,7 @@
 # Methods and Functions (KEYWORD2)
 # Constants (LITERAL1)
 
-# IotWebConf.h
+# IoTWebConf_for_Visuino_modified_by_IoT_Jedi.h
 
 WifiAuthInfo KEYWORD1
 

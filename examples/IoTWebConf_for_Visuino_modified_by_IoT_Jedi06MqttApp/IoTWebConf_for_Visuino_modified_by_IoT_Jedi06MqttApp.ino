@@ -40,7 +40,7 @@
 
 #include <MQTT.h>
 #include <IoTWebConf_for_Visuino_modified_by_IoT_Jedi.h>
-#include <IotWebConfUsing.h> // This loads aliases for easier class names.
+#include <IoTWebConf_for_Visuino_modified_by_IoT_JediUsing.h> // This loads aliases for easier class names.
 
 // -- Initial name of the Thing. Used e.g. as SSID of the own Access Point.
 const char thingName[] = "testThing";
@@ -81,7 +81,7 @@ char mqttServerValue[STRING_LEN];
 char mqttUserNameValue[STRING_LEN];
 char mqttUserPasswordValue[STRING_LEN];
 
-IotWebConf iotWebConf(thingName, &dnsServer, &server, wifiInitialApPassword, CONFIG_VERSION);
+IotWebConf IoTWebConf_for_Visuino_modified_by_IoT_Jedi(thingName, &dnsServer, &server, wifiInitialApPassword, CONFIG_VERSION);
 // -- You can also use namespace formats e.g.: iotwebconf::ParameterGroup
 IotWebConfParameterGroup mqttGroup = IotWebConfParameterGroup("MQTT configuration");
 IotWebConfTextParameter mqttServerParam = IotWebConfTextParameter("MQTT server", "mqttServer", mqttServerValue, STRING_LEN);
@@ -104,15 +104,15 @@ void setup()
   mqttGroup.addItem(&mqttUserNameParam);
   mqttGroup.addItem(&mqttUserPasswordParam);
 
-  iotWebConf.setStatusPin(STATUS_PIN);
-  iotWebConf.setConfigPin(CONFIG_PIN);
-  iotWebConf.addParameterGroup(&mqttGroup);
-  iotWebConf.setConfigSavedCallback(&configSaved);
-  iotWebConf.setFormValidator(&formValidator);
-  iotWebConf.setWifiConnectionCallback(&wifiConnected);
+  IoTWebConf_for_Visuino_modified_by_IoT_Jedi.setStatusPin(STATUS_PIN);
+  IoTWebConf_for_Visuino_modified_by_IoT_Jedi.setConfigPin(CONFIG_PIN);
+  IoTWebConf_for_Visuino_modified_by_IoT_Jedi.addParameterGroup(&mqttGroup);
+  IoTWebConf_for_Visuino_modified_by_IoT_Jedi.setConfigSavedCallback(&configSaved);
+  IoTWebConf_for_Visuino_modified_by_IoT_Jedi.setFormValidator(&formValidator);
+  IoTWebConf_for_Visuino_modified_by_IoT_Jedi.setWifiConnectionCallback(&wifiConnected);
 
   // -- Initializing the configuration.
-  bool validConfig = iotWebConf.init();
+  bool validConfig = IoTWebConf_for_Visuino_modified_by_IoT_Jedi.init();
   if (!validConfig)
   {
     mqttServerValue[0] = '\0';
@@ -134,7 +134,7 @@ void setup()
 void loop() 
 {
   // -- doLoop should be called as frequently as possible.
-  iotWebConf.doLoop();
+  IoTWebConf_for_Visuino_modified_by_IoT_Jedi.doLoop();
   mqttClient.loop();
   
   if (needMqttConnect)
@@ -144,7 +144,7 @@ void loop()
       needMqttConnect = false;
     }
   }
-  else if ((iotWebConf.getState() == IOTWEBCONF_STATE_ONLINE) && (!mqttClient.connected()))
+  else if ((IoTWebConf_for_Visuino_modified_by_IoT_Jedi.getState() == IOTWEBCONF_STATE_ONLINE) && (!mqttClient.connected()))
   {
     Serial.println("MQTT reconnect");
     connectMqtt();
@@ -153,7 +153,7 @@ void loop()
   if (needReset)
   {
     Serial.println("Rebooting after 1 second.");
-    iotWebConf.delay(1000);
+    IoTWebConf_for_Visuino_modified_by_IoT_Jedi.delay(1000);
     ESP.restart();
   }
 
@@ -174,7 +174,7 @@ void loop()
 void handleRoot()
 {
   // -- Let IotWebConf test and handle captive portal requests.
-  if (IoTWebConf_for_Visuino_modified_by_IoT_Jedi.handleCaptivePortal())
+  if (ioTWebConf.handleCaptivePortal())
   {
     // -- Captive portal request were already served.
     return;
@@ -240,7 +240,7 @@ bool connectMqtt() {
 bool connectMqtt() {
   Serial.println("Connecting to MQTT server...");
   while (!connectMqttOptions()) {
-    iotWebConf.delay(1000);
+    IoTWebConf_for_Visuino_modified_by_IoT_Jedi.delay(1000);
   }
   Serial.println("Connected!");
 
@@ -254,15 +254,15 @@ bool connectMqttOptions()
   bool result;
   if (mqttUserPasswordValue[0] != '\0')
   {
-    result = mqttClient.connect(iotWebConf.getThingName(), mqttUserNameValue, mqttUserPasswordValue);
+    result = mqttClient.connect(IoTWebConf_for_Visuino_modified_by_IoT_Jedi.getThingName(), mqttUserNameValue, mqttUserPasswordValue);
   }
   else if (mqttUserNameValue[0] != '\0')
   {
-    result = mqttClient.connect(iotWebConf.getThingName(), mqttUserNameValue);
+    result = mqttClient.connect(IoTWebConf_for_Visuino_modified_by_IoT_Jedi.getThingName(), mqttUserNameValue);
   }
   else
   {
-    result = mqttClient.connect(iotWebConf.getThingName());
+    result = mqttClient.connect(IoTWebConf_for_Visuino_modified_by_IoT_Jedi.getThingName());
   }
   return result;
 }

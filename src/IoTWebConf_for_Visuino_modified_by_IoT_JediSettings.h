@@ -11,8 +11,8 @@
  * of the MIT license.  See the LICENSE file for details.
  */
 
-#ifndef IotWebConfSettings_h
-#define IotWebConfSettings_h
+#ifndef IoTWebConf_for_Visuino_modified_by_IoT_JediSettings_h
+#define IoTWebConf_for_Visuino_modified_by_IoT_JediSettings_h
 
 // -- We might want to place the config in the EEPROM in an offset.
 #ifndef IOTWEBCONF_CONFIG_START

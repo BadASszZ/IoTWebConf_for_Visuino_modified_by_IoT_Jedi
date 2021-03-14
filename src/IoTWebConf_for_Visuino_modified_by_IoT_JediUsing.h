@@ -11,8 +11,8 @@
  * of the MIT license.  See the LICENSE file for details.
  */
 
-#ifndef IotWebConfUsing_h
-#define IotWebConfUsing_h
+#ifndef IoTWebConf_for_Visuino_modified_by_IoT_JediUsing_h
+#define IoTWebConf_for_Visuino_modified_by_IoT_JediUsing_h
 
 // This "using" lines are just aliases, and should avoided.
 

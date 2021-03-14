@@ -49,7 +49,7 @@ void processCommand();
 DNSServer dnsServer;
 WebServer server(80);
 
-IotWebConf iotWebConf(thingName, &dnsServer, &server, wifiInitialApPassword);
+IotWebConf IoTWebConf_for_Visuino_modified_by_IoT_Jedi(thingName, &dnsServer, &server, wifiInitialApPassword);
 
 char commandParameter[COMMAND_PARAMETER_LENGTH];
 char labelBuffer[COMMAND_PARAMETER_LENGTH];
@@ -61,8 +61,8 @@ void setup()
   Serial.println("Starting up...");
 
   // -- Initializing the configuration.
-  iotWebConf.setStatusPin(STATUS_PIN);
-  iotWebConf.init();
+  IoTWebConf_for_Visuino_modified_by_IoT_Jedi.setStatusPin(STATUS_PIN);
+  IoTWebConf_for_Visuino_modified_by_IoT_Jedi.init();
 
   // -- Set up required URL handlers on the web server.
   server.on("/", handleRoot);
@@ -75,7 +75,7 @@ void setup()
 void loop() 
 {
   // -- doLoop should be called as frequently as possible.
-  iotWebConf.doLoop();
+  IoTWebConf_for_Visuino_modified_by_IoT_Jedi.doLoop();
 
   if (Serial.available())
   {
@@ -130,12 +130,12 @@ void processCommand()
       // -- a0 - stop forcing AP mode
       if (commandParameter[0] == '1')
       {
-        iotWebConf.forceApMode(true);
+        IoTWebConf_for_Visuino_modified_by_IoT_Jedi.forceApMode(true);
         Serial.println(F(">> Force AP mode started"));
       }
       else if (commandParameter[0] == '0')
       {
-        iotWebConf.forceApMode(false);
+        IoTWebConf_for_Visuino_modified_by_IoT_Jedi.forceApMode(false);
         Serial.println(F(">> Force AP mode stopped"));
       }
       break;
@@ -145,36 +145,36 @@ void processCommand()
       // -- b0 - stop blinking (started by the options above)
       if (commandParameter[0] == '1')
       {
-        iotWebConf.blink(2000, 70);
+        IoTWebConf_for_Visuino_modified_by_IoT_Jedi.blink(2000, 70);
         Serial.println(F(">> Started custom blinking with repeat of 2000ms and 70% on state."));
       }
       else if (commandParameter[0] == '2')
       {
-        iotWebConf.fineBlink(100, 600);
+        IoTWebConf_for_Visuino_modified_by_IoT_Jedi.fineBlink(100, 600);
         Serial.println(F(">> Started custom blinking with repeat of 100ms ON and 600ms OFF state."));
       }
       else if (commandParameter[0] == '0')
       {
-        iotWebConf.stopCustomBlink();
+        IoTWebConf_for_Visuino_modified_by_IoT_Jedi.stopCustomBlink();
         Serial.println(F(">> Custom blinking stopped."));
       }
       break;
     case 's':
       // -- s - Get current state
       Serial.print(F(">> State is :"));
-      Serial.println(iotWebConf.getState());
+      Serial.println(IoTWebConf_for_Visuino_modified_by_IoT_Jedi.getState());
       break;
     case 't':
       // -- t1 - Sets the AP timeout to 60 secs
       // -- t0 - Sets the AP timeout to the default
       if (commandParameter[0] == '1')
       {
-        iotWebConf.setApTimeoutMs(60000);
+        IoTWebConf_for_Visuino_modified_by_IoT_Jedi.setApTimeoutMs(60000);
         Serial.println(F(">> AP timeout was changed to 60secs."));
       }
       else if (commandParameter[0] == '0')
       {
-        iotWebConf.setApTimeoutMs(IOTWEBCONF_DEFAULT_AP_MODE_TIMEOUT_MS);
+        IoTWebConf_for_Visuino_modified_by_IoT_Jedi.setApTimeoutMs(IOTWEBCONF_DEFAULT_AP_MODE_TIMEOUT_MS);
         Serial.print(F(">> AP timeout was changed to default (ms):"));
         Serial.println(IOTWEBCONF_DEFAULT_AP_MODE_TIMEOUT_MS);
       }
@@ -182,10 +182,10 @@ void processCommand()
     case 'n':
       // -- n<name> - Sets the thing name
       strncpy(
-        iotWebConf.getThingNameParameter()->valueBuffer,
+        IoTWebConf_for_Visuino_modified_by_IoT_Jedi.getThingNameParameter()->valueBuffer,
         commandParameter,
-        iotWebConf.getThingNameParameter()->getLength());
-      iotWebConf.saveConfig();
+        IoTWebConf_for_Visuino_modified_by_IoT_Jedi.getThingNameParameter()->getLength());
+      IoTWebConf_for_Visuino_modified_by_IoT_Jedi.saveConfig();
       Serial.print(F(">> Thing name was changed to '"));
       Serial.print(commandParameter);
       Serial.println(F("'"));
@@ -196,7 +196,7 @@ void processCommand()
         labelBuffer,
         commandParameter,
         COMMAND_PARAMETER_LENGTH);
-      iotWebConf.getThingNameParameter()->label = labelBuffer;
+      IoTWebConf_for_Visuino_modified_by_IoT_Jedi.getThingNameParameter()->label = labelBuffer;
       Serial.print(F(">> Thing name label was temporary changed to '"));
       Serial.print(labelBuffer);
       Serial.println(F("'"));

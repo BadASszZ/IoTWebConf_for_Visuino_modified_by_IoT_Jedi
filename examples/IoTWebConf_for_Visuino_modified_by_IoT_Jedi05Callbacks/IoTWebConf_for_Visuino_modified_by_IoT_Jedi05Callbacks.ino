@@ -24,7 +24,7 @@
  */
 
 #include <IoTWebConf_for_Visuino_modified_by_IoT_Jedi.h>
-#include <IotWebConfUsing.h> // This loads aliases for easier class names.
+#include <IoTWebConf_for_Visuino_modified_by_IoT_JediUsing.h> // This loads aliases for easier class names.
 
 // -- Initial name of the Thing. Used e.g. as SSID of the own Access Point.
 const char thingName[] = "testThing";
@@ -58,7 +58,7 @@ WebServer server(80);
 
 char stringParamValue[STRING_LEN];
 
-IotWebConf iotWebConf(thingName, &dnsServer, &server, wifiInitialApPassword, CONFIG_VERSION);
+IotWebConf IoTWebConf_for_Visuino_modified_by_IoT_Jedi(thingName, &dnsServer, &server, wifiInitialApPassword, CONFIG_VERSION);
 // -- You can also use namespace formats e.g.: iotwebconf::TextParameter
 IotWebConfTextParameter stringParam = IotWebConfTextParameter("String param", "stringParam", stringParamValue, STRING_LEN);
 
@@ -68,15 +68,15 @@ void setup()
   Serial.println();
   Serial.println("Starting up...");
 
-  iotWebConf.setStatusPin(STATUS_PIN);
-  iotWebConf.setConfigPin(CONFIG_PIN);
-  iotWebConf.addSystemParameter(&stringParam);
-  iotWebConf.setConfigSavedCallback(&configSaved);
-  iotWebConf.setFormValidator(&formValidator);
-  iotWebConf.setWifiConnectionCallback(&wifiConnected);
+  IoTWebConf_for_Visuino_modified_by_IoT_Jedi.setStatusPin(STATUS_PIN);
+  IoTWebConf_for_Visuino_modified_by_IoT_Jedi.setConfigPin(CONFIG_PIN);
+  IoTWebConf_for_Visuino_modified_by_IoT_Jedi.addSystemParameter(&stringParam);
+  IoTWebConf_for_Visuino_modified_by_IoT_Jedi.setConfigSavedCallback(&configSaved);
+  IoTWebConf_for_Visuino_modified_by_IoT_Jedi.setFormValidator(&formValidator);
+  IoTWebConf_for_Visuino_modified_by_IoT_Jedi.setWifiConnectionCallback(&wifiConnected);
 
   // -- Initializing the configuration.
-  bool validConfig = iotWebConf.init();
+  bool validConfig = IoTWebConf_for_Visuino_modified_by_IoT_Jedi.init();
   if (!validConfig)
   {
     stringParamValue[0] = '\0';
@@ -93,7 +93,7 @@ void setup()
 void loop() 
 {
   // -- doLoop should be called as frequently as possible.
-  iotWebConf.doLoop();
+  IoTWebConf_for_Visuino_modified_by_IoT_Jedi.doLoop();
 }
 
 /**
@@ -102,7 +102,7 @@ void loop()
 void handleRoot()
 {
   // -- Let IotWebConf test and handle captive portal requests.
-  if (IoTWebConf_for_Visuino_modified_by_IoT_Jedi.handleCaptivePortal())
+  if (ioTWebConf.handleCaptivePortal())
   {
     // -- Captive portal request were already served.
     return;

@@ -11,8 +11,8 @@
  * of the MIT license.  See the LICENSE file for details.
  */
 
-#ifndef IotWebConfParameter_h
-#define IotWebConfParameter_h
+#ifndef IoTWebConf_for_Visuino_modified_by_IoT_JediParameter_h
+#define IoTWebConf_for_Visuino_modified_by_IoT_JediParameter_h
 
 #include <Arduino.h>
 #include <functional>
